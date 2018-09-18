@@ -13,7 +13,6 @@ public class MainSceneController {
 
     SystemInformation si;
 
-
     @FXML
     private TextField nameCreateTextField;
 
@@ -134,7 +133,6 @@ public class MainSceneController {
                     //Time counter
                     try {
                         Thread.sleep(1000);
-                        System.out.println("1 sec");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

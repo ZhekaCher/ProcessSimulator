@@ -2,11 +2,13 @@ package data;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class SystemInformation {
 
+    private static Stage mainStage;
     private static int readyCapacity = 5;
     private static int blockedCapacity = 5;
     private static int timeoutValue = 5;
@@ -20,6 +22,14 @@ public class SystemInformation {
     private static ObservableList <Process> readySuspendedList = FXCollections.observableList(new ArrayList<>());
     private static ObservableList <Process> blockedSuspendedList = FXCollections.observableList(new ArrayList<>());
     private static ObservableList <Process> exitList = FXCollections.observableList(new ArrayList<>());
+
+    public static Stage getMainStage() {
+        return mainStage;
+    }
+
+    public static void setMainStage(Stage mainStage) {
+        SystemInformation.mainStage = mainStage;
+    }
 
     public static int getReadyCapacity() {
         return readyCapacity;
