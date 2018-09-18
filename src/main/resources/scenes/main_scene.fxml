@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainSceneController">
    <children>
       <AnchorPane prefHeight="846.0" prefWidth="983.0">
          <children>
@@ -85,7 +84,7 @@
                   <Button layoutX="89.0" layoutY="170.0" mnemonicParsing="false" text="Action" />
                </children>
             </AnchorPane>
-            <Text layoutX="337.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Process ID:" />
+            <Text layoutX="337.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data.Process ID:" />
             <Text layoutX="364.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
             <Text layoutX="367.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
          </children>
