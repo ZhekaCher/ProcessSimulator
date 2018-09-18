@@ -26,7 +26,7 @@
                   <DropShadow height="41.76" radius="18.8975" width="35.83" />
                </effect>
             </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="142.0" prefHeight="228.0" prefWidth="258.0" style="-fx-background-color: pink;" AnchorPane.leftAnchor="14.0">
+            <AnchorPane layoutX="55.0" layoutY="170.0" prefHeight="228.0" prefWidth="258.0" style="-fx-background-color: pink;" AnchorPane.leftAnchor="55.0">
                <children>
                   <TableView fx:id="readyTable" layoutX="15.0" layoutY="44.0" prefHeight="170.0" prefWidth="229.0">
                     <columns>
@@ -38,7 +38,7 @@
                   <Text layoutX="111.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ready:" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="392.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="14.0">
+            <AnchorPane layoutX="55.0" layoutY="434.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="55.0">
                <children>
                   <TableView fx:id="readySuspendedTable" layoutY="37.0" prefHeight="148.0" prefWidth="229.0">
                      <columns>
@@ -50,7 +50,7 @@
                   <Text layoutX="77.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ready suspended:" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="263.0" layoutY="400.0" prefHeight="208.0" prefWidth="229.0" style="-fx-background-color: yellow;" AnchorPane.bottomAnchor="47.0">
+            <AnchorPane layoutX="344.0" layoutY="407.0" prefHeight="208.0" prefWidth="229.0" style="-fx-background-color: yellow;" AnchorPane.bottomAnchor="40.0">
                <children>
                   <TableView fx:id="blockedSuspendedTable" layoutY="22.0" prefHeight="148.0" prefWidth="229.0">
                      <columns>
@@ -63,19 +63,19 @@
                   <Text layoutX="65.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blocked suspended:" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="754.0" prefHeight="655.0" prefWidth="229.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane layoutX="732.0" layoutY="61.0" prefHeight="218.0" prefWidth="229.0" style="-fx-background-color: green;" AnchorPane.rightAnchor="22.0">
                <children>
-                  <Text layoutX="104.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit:" AnchorPane.topAnchor="6.0" />
-                  <TableView fx:id="exitTable" layoutY="24.0" prefHeight="631.0" prefWidth="229.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+                  <TableView fx:id="exitTable" layoutY="24.0" prefHeight="170.0" prefWidth="229.0">
                      <columns>
                         <TableColumn fx:id="exitTableIdColumn" prefWidth="47.0" sortable="false" text="Id" />
                         <TableColumn fx:id="exitTableNameColumn" prefWidth="129.0" sortable="false" text="Name" />
                         <TableColumn fx:id="exitTableTimeColumn" prefWidth="52.0" sortable="false" text="Time" />
                      </columns>
                   </TableView>
+                  <Text layoutX="104.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit:" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="502.0" layoutY="383.0" prefHeight="242.0" prefWidth="229.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="252.0">
+            <AnchorPane layoutX="636.0" layoutY="350.0" prefHeight="242.0" prefWidth="229.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="63.0" AnchorPane.rightAnchor="118.0">
                <children>
                   <TableView fx:id="blockedTable" layoutY="47.0" prefHeight="170.0" prefWidth="229.0">
                      <columns>

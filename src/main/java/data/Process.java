@@ -1,3 +1,5 @@
+package data;
+
 public class Process {
 
     private int id;
