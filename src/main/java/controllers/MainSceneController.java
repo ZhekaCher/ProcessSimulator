@@ -94,7 +94,7 @@ public class MainSceneController {
     private Text runTimeText;
 
     @FXML
-    private Text lastTimeText;
+    private Text leftTimeText;
 
 
 
@@ -123,7 +123,7 @@ public class MainSceneController {
     @FXML
     private void execution() {
         new Thread() {
-            int currentProcessTimeLast;
+            int currentProcessTimeLeft;
             int currentProcessTimeCounter;
 
             @Override
@@ -143,16 +143,16 @@ public class MainSceneController {
                     //Run field
                     if (si.getCurrentProcess() != null) {
                         currentProcessTimeCounter--;
-                        currentProcessTimeLast--;
-                        lastTimeText.setText(String.valueOf(currentProcessTimeLast));
+                        currentProcessTimeLeft--;
+                        leftTimeText.setText(String.valueOf(currentProcessTimeLeft));
                         if (currentProcessTimeCounter == 0) {
                             si.getExitList().add(si.getCurrentProcess());
                             si.setCurrentProcess(null);
                             runIdText.setText("");
                             runNameText.setText("");
                             runTimeText.setText("");
-                            lastTimeText.setText("");
-                        } else if (currentProcessTimeLast == 0) {
+                            leftTimeText.setText("");
+                        } else if (currentProcessTimeLeft == 0) {
                             si.getCurrentProcess().setTime(si.getCurrentProcess().getTime() - si.getTimeSubtract());
                             if (si.getBlockedList().size() >= si.getBlockedCapacity()) {
                                 si.getBlockedSuspendedList().add(si.getCurrentProcess());
@@ -163,18 +163,17 @@ public class MainSceneController {
                             runIdText.setText("");
                             runNameText.setText("");
                             runTimeText.setText("");
-                            lastTimeText.setText("");
+                            leftTimeText.setText("");
                         }
                     } else if (si.getReadyList().size() != 0) {
                         Process newProcess = si.getReadyList().get(0);
                         currentProcessTimeCounter = newProcess.getTime();
-                        currentProcessTimeLast = si.getTimeoutValue();
-                        lastTimeText.setText(String.valueOf(currentProcessTimeLast));
+                        currentProcessTimeLeft = si.getTimeoutValue();
+                        leftTimeText.setText(String.valueOf(currentProcessTimeLeft));
                         si.setCurrentProcess(newProcess);
                         runIdText.setText(String.valueOf(newProcess.getId()));
                         runNameText.setText(newProcess.getName());
                         runTimeText.setText(String.valueOf(newProcess.getTime()));
-                        System.out.println("id: " + newProcess.getId());
                         si.getReadyList().remove(0);
                     }
 
