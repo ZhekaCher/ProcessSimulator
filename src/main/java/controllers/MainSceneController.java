@@ -2,12 +2,21 @@ package controllers;
 
 import data.Process;
 import data.SystemInformation;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class MainSceneController {
 
@@ -33,6 +42,9 @@ public class MainSceneController {
 
     @FXML
     private TableColumn<?, ?> readyTableTimeColumn;
+
+    @FXML
+    private TableColumn<?, ?> readyTablePriorityColumn;
 
     @FXML
     private TableView<Process> readySuspendedTable;
@@ -82,6 +94,11 @@ public class MainSceneController {
     @FXML
     private TableColumn<?, ?> blockedTableTimeColumn;
 
+    @FXML
+    private ChoiceBox<String> priorityCreateChoiceBox;
+
+    @FXML
+    private CheckBox blockedCreateCheckBox;
 
     @FXML
     private Text runIdText;
@@ -95,11 +112,16 @@ public class MainSceneController {
     @FXML
     private Text leftTimeText;
 
+    @FXML
+    private Button statisticsButton;
 
+    @FXML
+    private ProgressBar progressBar;
 
     @FXML
     void initialize() {
         tablesInit();
+        priorityCreateChoiceBoxInit();
 
         execution();
     }
@@ -110,12 +132,41 @@ public class MainSceneController {
             int id = Integer.valueOf(idCreateTextField.getText());
             String name = nameCreateTextField.getText();
             int time = Integer.valueOf(timeCreateTextField.getText());
+            boolean blocked = blockedCreateCheckBox.isSelected();
+            int priority = 0;
+            switch (priorityCreateChoiceBox.getValue()) {
+                case "Low":
+                    priority = 0;
+                    break;
+                case "Medium":
+                    priority = 1;
+                    break;
+                case "High":
+                    priority = 2;
+                    break;
+            }
+
             if (si.getReadyList().size() < si.getReadyCapacity())
-                si.getReadyList().add(new Process(id, name, time));
+                si.getReadyList().add(new Process(id, name, time, blocked, priority));
             else
-                si.getReadySuspendedList().add(new Process(id, name, time));
+                si.getReadySuspendedList().add(new Process(id, name, time, blocked, priority));
         } catch (Exception e) {
             System.err.println("ERROR #1");
+        }
+    }
+
+    class ProgressBarThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            while (true) {
+                try {
+                    Thread.sleep(9);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                progressBar.setProgress(progressBar.getProgress() + 1 / (double) (si.getTimeoutValue() * 100));
+            }
         }
     }
 
@@ -127,8 +178,10 @@ public class MainSceneController {
 
             @Override
             public void run() {
+                ProgressBarThread progressBarThread = new ProgressBarThread();
                 super.run();
                 while (true) {
+                    sortReadyLists();
 
                     //Time counter
                     try {
@@ -136,7 +189,6 @@ public class MainSceneController {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
 
                     //Run field
                     if (si.getCurrentProcess() != null) {
@@ -150,6 +202,8 @@ public class MainSceneController {
                             runNameText.setText("");
                             runTimeText.setText("");
                             leftTimeText.setText("");
+                            progressBarThread.stop();
+                            progressBar.setProgress(0);
                         } else if (currentProcessTimeLeft == 0) {
                             si.getCurrentProcess().setTime(si.getCurrentProcess().getTime() - si.getTimeSubtract());
                             if (si.getBlockedList().size() >= si.getBlockedCapacity()) {
@@ -162,6 +216,8 @@ public class MainSceneController {
                             runNameText.setText("");
                             runTimeText.setText("");
                             leftTimeText.setText("");
+                            progressBarThread.stop();
+                            progressBar.setProgress(0);
                         }
                     } else if (si.getReadyList().size() != 0) {
                         Process newProcess = si.getReadyList().get(0);
@@ -173,6 +229,8 @@ public class MainSceneController {
                         runNameText.setText(newProcess.getName());
                         runTimeText.setText(String.valueOf(newProcess.getTime()));
                         si.getReadyList().remove(0);
+                        progressBarThread = new ProgressBarThread();
+                        progressBarThread.start();
                     }
 
                     //ReadySuspendedControl
@@ -189,11 +247,11 @@ public class MainSceneController {
     }
 
     @FXML
-    void blockedSuspendedAction(){
-        if (si.getBlockedSuspendedList().size() > 0){
+    void blockedSuspendedAction() {
+        if (si.getBlockedSuspendedList().size() > 0) {
             if (si.getReadyList().size() < si.getReadyCapacity()) {
                 si.getReadyList().add(si.getBlockedSuspendedList().get(0));
-            }else {
+            } else {
                 si.getReadySuspendedList().add(si.getBlockedSuspendedList().get(0));
             }
             si.getBlockedSuspendedList().remove(0);
@@ -201,11 +259,11 @@ public class MainSceneController {
     }
 
     @FXML
-    void blockedAction(){
-        if (si.getBlockedList().size() != 0){
+    void blockedAction() {
+        if (si.getBlockedList().size() != 0) {
             if (si.getReadyList().size() < si.getReadyCapacity()) {
                 si.getReadyList().add(si.getBlockedList().get(0));
-            }else {
+            } else {
                 si.getReadySuspendedList().add(si.getBlockedList().get(0));
             }
             si.getBlockedList().remove(0);
@@ -224,6 +282,7 @@ public class MainSceneController {
         readyTableIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         readyTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         readyTableTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        readyTablePriorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
 
         readyTable.setItems(si.getReadyList());
     }
@@ -260,5 +319,53 @@ public class MainSceneController {
         exitTable.setItems(si.getExitList());
     }
 
+    void priorityCreateChoiceBoxInit() {
+        priorityCreateChoiceBox.getItems().add("Low");
+        priorityCreateChoiceBox.getItems().add("Medium");
+        priorityCreateChoiceBox.getItems().add("High");
+        priorityCreateChoiceBox.setValue("Medium");
+    }
+
+    @FXML
+    void openStatistics() throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/scenes/diagrams_scene.fxml"))));
+            stage.getIcons().add(new Image("/img/piechart.png"));
+        stage.show();
+        statisticsButton.setDisable(true);
+        stage.setOnCloseRequest(event -> statisticsButton.setDisable(false));
+    }
+
+    void addProcessToReady(Process process){
+        if(si.getReadyList().size() < si.getReadyCapacity()){
+            si.getReadyList().add(process);
+        }else{
+            si.getReadySuspendedList().add(process);
+        }
+    }
+
+    void sortReadyLists(){
+        try {
+            for (int i = 0; i < si.getReadyList().size() - 1; i++) {
+                for (int j = i + 1; j < si.getReadyList().size(); j++) {
+                    if (si.getReadyList().get(i).getPriority() < si.getReadyList().get(j).getPriority()) {
+                        Process temp = si.getReadyList().get(i);
+                        si.getReadyList().set(i, si.getReadyList().get(j));
+                        si.getReadyList().set(j, temp);
+                    }
+                }
+            }
+            for (int i = 0; i < si.getReadyList().size() - 1; i++) {
+                for (int j = i + 1; j < si.getReadyList().size(); j++) {
+                    if (si.getReadyList().get(i).getPriority() < si.getReadyList().get(j).getPriority()) {
+                        Process temp = si.getReadyList().get(i);
+                        si.getReadyList().set(i, si.getReadyList().get(j));
+                        si.getReadyList().set(j, temp);
+                    }
+                }
+            }
+        }catch (Exception e){
+        }
+    }
 
 }

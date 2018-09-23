@@ -6,10 +6,15 @@ public class Process {
     private String name;
     private int time;
 
-    public Process(int id, String name, int time) {
+    private boolean blocked;
+    private int priority;
+
+    public Process(int id, String name, int time, boolean blocked, int priority) {
         this.id = id;
         this.name = name;
         this.time = time;
+        this.blocked = blocked;
+        this.priority = priority;
     }
 
     public int getId() {
@@ -28,4 +33,15 @@ public class Process {
         this.time = time;
     }
 
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
 }

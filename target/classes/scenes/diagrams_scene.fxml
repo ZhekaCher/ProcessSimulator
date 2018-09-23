@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -8,8 +13,20 @@
    <children>
       <AnchorPane prefHeight="689.0" prefWidth="779.0">
          <children>
-            <PieChart fx:id="pieChart" layoutX="201.0" layoutY="92.0" onMouseClicked="#refresh" prefHeight="357.0" prefWidth="408.0" />
+            <PieChart fx:id="pieChart" layoutX="14.0" layoutY="14.0" legendSide="RIGHT" legendVisible="false" onMouseClicked="#refreshPieChart" prefHeight="304.0" prefWidth="371.0" title="CURRENT POSITION" />
+            <Button layoutX="353.0" layoutY="485.0" mnemonicParsing="false" onAction="#refreshAll" text="Refresh All" />
+            <BarChart fx:id="barChart" layoutX="394.0" layoutY="14.0" onMouseClicked="#refreshBarChart" prefHeight="304.0" prefWidth="371.0" title="CURRENT READY PRIORITIES">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
          </children>
+         <effect>
+            <InnerShadow height="41.76" radius="16.6725" width="26.93" />
+         </effect>
       </AnchorPane>
    </children>
 </VBox>
