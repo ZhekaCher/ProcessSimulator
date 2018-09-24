@@ -2,24 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c91dc5dc-3e9b-4fe1-ad66-0a087de8a580" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/piechart.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DiagramsSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DiagramsSceneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MainSceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/Process.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Process.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/scenes/diagrams_scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scenes/diagrams_scene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/SystemInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/SystemInformation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/scenes/main_scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scenes/main_scene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ProcessSimulator-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ProcessSimulator-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/DiagramsSceneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/DiagramsSceneController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/MainSceneController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/MainSceneController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/controllers/MainSceneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/MainSceneController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data/Process.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data/Process.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scenes/diagrams_scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scenes/diagrams_scene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scenes/main_scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scenes/main_scene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,25 +26,26 @@
     <session id="-2012517032">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.15" value="2" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="3" />
-          <entry key="java" value="7" />
+          <entry key="java" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="7" />
+          <entry key="JAVA" value="8" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
@@ -65,14 +53,14 @@
         <counts>
           <entry key="dummy" value="6" />
           <entry key="fxml" value="10" />
-          <entry key="java" value="5170" />
+          <entry key="java" value="6638" />
           <entry key="txt" value="9" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5170" />
+          <entry key="JAVA" value="6638" />
           <entry key="PLAIN_TEXT" value="15" />
           <entry key="XML" value="15" />
         </counts>
@@ -84,7 +72,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1820">
+            <state relative-caret-position="485">
               <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
             </state>
           </provider>
@@ -105,8 +93,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controllers/MainSceneController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="351" column="20" selection-start-line="351" selection-start-column="20" selection-end-line="351" selection-end-column="20" />
+            <state relative-caret-position="457">
+              <caret line="210" column="31" lean-forward="true" selection-start-line="210" selection-start-column="31" selection-end-line="210" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -115,10 +103,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data/Process.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="e#804#805#0" expanded="true" />
+                <element signature="e#835#836#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/data/SystemInformation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1020">
-              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+            <state relative-caret-position="205">
+              <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1190#1191#0" expanded="true" />
@@ -135,7 +136,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controllers/DiagramsSceneController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
+            <state relative-caret-position="1848">
               <caret line="77" column="27" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -156,8 +157,12 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/scenes/main_scene.fxml">
-          <provider selected="true" editor-type-id="text-editor" />
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="112" column="84" lean-forward="true" selection-start-line="112" selection-start-column="84" selection-end-line="112" selection-end-column="85" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -176,10 +181,16 @@
       <find>currentProcessTimeleft</find>
       <find>1 s</find>
       <find>getReadyList</find>
+      <find>si.getReadyList()</find>
+      <find>getBlockedList</find>
+      <find>exit</find>
     </findStrings>
     <replaceStrings>
       <replace>currentProcessTimeLeft</replace>
       <replace>getReadySuspendedList</replace>
+      <replace>si.getReadySuspendedList()</replace>
+      <replace>getSuspendedList</replace>
+      <replace>getReadyList</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -196,8 +207,9 @@
         <option value="$PROJECT_DIR$/src/main/resources/scenes/diagrams_scene.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/Process.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/SystemInformation.java" />
         <option value="$PROJECT_DIR$/src/main/java/controllers/DiagramsSceneController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/scenes/main_scene.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/data/SystemInformation.java" />
         <option value="$PROJECT_DIR$/src/main/java/controllers/MainSceneController.java" />
       </list>
     </option>
@@ -216,10 +228,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="367" />
-    <option name="y" value="-17" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -230,6 +242,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,12 +300,24 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ProcessSimulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProcessSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="scenes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProcessSimulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProcessSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -387,18 +413,19 @@
       <workItem from="1537460473730" duration="911000" />
       <workItem from="1537560349836" duration="3578000" />
       <workItem from="1537603966807" duration="6051000" />
-      <workItem from="1537725150341" duration="2253000" />
+      <workItem from="1537725150341" duration="3914000" />
+      <workItem from="1537810786795" duration="5099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29204000" />
+    <option name="totallyTimeSpent" value="35964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20645161" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20967741" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -407,7 +434,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32997763" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32997763" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32997763" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39932886" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -437,17 +464,10 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/main_scene.fxml" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/DiagramsSceneController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1820">
-          <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+        <state relative-caret-position="1848">
+          <caret line="77" column="27" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -463,13 +483,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/scenes/main_scene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="112" column="84" lean-forward="true" selection-start-line="112" selection-start-column="84" selection-end-line="112" selection-end-column="85" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/DiagramsSceneController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="77" column="27" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
+        <state relative-caret-position="280">
+          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -478,8 +502,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/data/Process.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
+        <state relative-caret-position="560">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="e#804#805#0" expanded="true" />
             <element signature="e#835#836#0" expanded="true" />
@@ -489,8 +513,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/data/SystemInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1020">
-          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+        <state relative-caret-position="205">
+          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1190#1191#0" expanded="true" />
@@ -503,10 +527,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controllers/MainSceneController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="351" column="20" selection-start-line="351" selection-start-column="20" selection-end-line="351" selection-end-column="20" />
+        <state relative-caret-position="457">
+          <caret line="210" column="31" lean-forward="true" selection-start-line="210" selection-start-column="31" selection-end-line="210" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

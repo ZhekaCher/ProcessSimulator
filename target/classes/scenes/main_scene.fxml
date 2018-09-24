@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainSceneController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainSceneController">
    <children>
       <AnchorPane prefHeight="10000.0" prefWidth="10000.0">
          <children>
@@ -41,10 +41,11 @@
                <children>
                   <TableView fx:id="readyTable" layoutY="58.0" prefHeight="163.0" prefWidth="229.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="readyTableIdColumn" editable="false" prefWidth="47.0" sortable="false" text="Id" />
-                      <TableColumn fx:id="readyTableNameColumn" editable="false" prefWidth="46.0" sortable="false" text="Name" />
-                        <TableColumn fx:id="readyTableTimeColumn" editable="false" prefWidth="42.0" sortable="false" text="Time" />
-                        <TableColumn fx:id="readyTablePriorityColumn" editable="false" prefWidth="79.0" sortable="false" text="Priority" />
+                      <TableColumn fx:id="readyTableIdColumn" editable="false" prefWidth="22.0" sortable="false" text="Id" />
+                      <TableColumn fx:id="readyTableNameColumn" editable="false" prefWidth="49.0" sortable="false" text="Name" />
+                        <TableColumn fx:id="readyTableTimeColumn" editable="false" prefWidth="38.0" sortable="false" text="Time" />
+                        <TableColumn fx:id="readyTablePriorityColumn" editable="false" prefWidth="49.0" sortable="false" text="Priority" />
+                        <TableColumn fx:id="readyTableBlockedColumn" editable="false" prefWidth="56.0" sortable="false" text="Blocked" />
                     </columns>
                   </TableView>
                   <Text layoutX="56.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ready:">
@@ -113,7 +114,6 @@
                      <columns>
                         <TableColumn fx:id="exitTableIdColumn" prefWidth="47.0" sortable="false" text="Id" />
                         <TableColumn fx:id="exitTableNameColumn" prefWidth="123.0" sortable="false" text="Name" />
-                        <TableColumn fx:id="exitTableTimeColumn" prefWidth="53.0" sortable="false" text="Time" />
                      </columns>
                   </TableView>
                </children>

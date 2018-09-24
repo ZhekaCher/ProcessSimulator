@@ -83,4 +83,12 @@ public class SystemInformation {
     public static ArrayList<Integer> getUsedIdList() {
         return usedIdList;
     }
+
+    public static boolean isIdExist(int id){
+        for (Integer integer : usedIdList) {
+            if (integer == id)
+                return true;
+        }
+        return false;
+    }
 }

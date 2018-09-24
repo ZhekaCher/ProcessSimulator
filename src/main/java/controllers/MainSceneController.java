@@ -2,7 +2,6 @@ package controllers;
 
 import data.Process;
 import data.SystemInformation;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,9 +12,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class MainSceneController {
@@ -45,6 +41,9 @@ public class MainSceneController {
 
     @FXML
     private TableColumn<?, ?> readyTablePriorityColumn;
+
+    @FXML
+    private TableColumn<?, ?> readyTableBlockedColumn;
 
     @FXML
     private TableView<Process> readySuspendedTable;
@@ -78,9 +77,6 @@ public class MainSceneController {
 
     @FXML
     private TableColumn<?, ?> exitTableNameColumn;
-
-    @FXML
-    private TableColumn<?, ?> exitTableTimeColumn;
 
     @FXML
     private TableView<Process> blockedTable;
@@ -118,6 +114,8 @@ public class MainSceneController {
     @FXML
     private ProgressBar progressBar;
 
+    int idCounter = 1;
+
     @FXML
     void initialize() {
         tablesInit();
@@ -129,7 +127,23 @@ public class MainSceneController {
     @FXML
     void createNewProcess() {
         try {
-            int id = Integer.valueOf(idCreateTextField.getText());
+            int id = 0;
+            if (idCreateTextField.getText().equals("")) {
+                while (true) {
+                    if (si.isIdExist(idCounter)){
+                        idCounter++;
+                        continue;
+                    }
+                    id = idCounter;
+                    idCounter++;
+                    break;
+                }
+            }
+            else if(!si.isIdExist(Integer.valueOf(idCreateTextField.getText())))
+                id = Integer.valueOf(idCreateTextField.getText());
+            else
+                throw new Exception();
+            si.getUsedIdList().add(id);
             String name = nameCreateTextField.getText();
             int time = Integer.valueOf(timeCreateTextField.getText());
             boolean blocked = blockedCreateCheckBox.isSelected();
@@ -145,13 +159,15 @@ public class MainSceneController {
                     priority = 2;
                     break;
             }
-
-            if (si.getReadyList().size() < si.getReadyCapacity())
-                si.getReadyList().add(new Process(id, name, time, blocked, priority));
-            else
-                si.getReadySuspendedList().add(new Process(id, name, time, blocked, priority));
+            addProcessToReady(new Process(id, name, time, blocked, priority));
+            nameCreateTextField.setText("");
+            idCreateTextField.setText("");
+            timeCreateTextField.setText("");
+            blockedCreateCheckBox.setSelected(false);
+            priorityCreateChoiceBox.setValue("Medium");
         } catch (Exception e) {
             System.err.println("ERROR #1");
+            e.printStackTrace();
         }
     }
 
@@ -181,8 +197,6 @@ public class MainSceneController {
                 ProgressBarThread progressBarThread = new ProgressBarThread();
                 super.run();
                 while (true) {
-                    sortReadyLists();
-
                     //Time counter
                     try {
                         Thread.sleep(1000);
@@ -190,10 +204,71 @@ public class MainSceneController {
                         e.printStackTrace();
                     }
 
+                    sortReadyLists();
+                    suspendedControl();
+                    sortReadyLists();
+
                     //Run field
+                    if (si.getCurrentProcess() != null){
+                        currentProcessTimeLeft--;
+                        currentProcessTimeCounter--;
+                        Process process = si.getCurrentProcess();
+                        leftTimeText.setText(String.valueOf(currentProcessTimeLeft));
+                        if (si.getCurrentProcess().isBlocked()) {
+                            Random random = new Random(System.nanoTime());
+                            int r = random.nextInt(currentProcessTimeLeft);
+                            if (r == 0) {
+                                si.setCurrentProcess(null);
+                                currentProcessTimeLeft=0;
+                                currentProcessTimeCounter=0;
+                                clearRunFields();
+                                progressBarThread.stop();
+                                process.setTime(process.getTime()-si.getTimeoutValue());
+                                process.setBlocked(false);
+                                addProcessToBlocked(process);
+                            }
+                        } else if(currentProcessTimeCounter == 0){
+                            si.setCurrentProcess(null);
+                            currentProcessTimeLeft=0;
+                            currentProcessTimeCounter=0;
+                            clearRunFields();
+                            progressBarThread.stop();
+                            si.getExitList().add(process);
+                        }else if (currentProcessTimeLeft == 0){
+                            si.setCurrentProcess(null);
+                            currentProcessTimeLeft=0;
+                            currentProcessTimeCounter=0;
+                            clearRunFields();
+                            progressBarThread.stop();
+                            process.setTime(process.getTime()-si.getTimeoutValue());
+                            addProcessToReady(process);
+                        }
+
+                    }else if (si.getCurrentProcess() == null && si.getReadyList().size() > 0){
+                        Process process = si.getReadyList().get(0);
+                        currentProcessTimeLeft = si.getTimeoutValue();
+                        currentProcessTimeCounter = process.getTime();
+                        si.setCurrentProcess(process);
+                        si.getReadyList().remove(0);
+                        runIdText.setText(String.valueOf(process.getId()));
+                        runNameText.setText(process.getName());
+                        runTimeText.setText(String.valueOf(process.getTime()));
+                        leftTimeText.setText(String.valueOf(currentProcessTimeLeft));
+                        progressBarThread = new ProgressBarThread();
+                        progressBarThread.start();
+                    }
+
+                    /*
                     if (si.getCurrentProcess() != null) {
                         currentProcessTimeCounter--;
                         currentProcessTimeLeft--;
+                        if (si.getCurrentProcess().isBlocked()) {
+                            Random random = new Random(System.nanoTime());
+                            int r = random.nextInt(currentProcessTimeLeft);
+                            if (r == 0) {
+
+                            }
+                        }
                         leftTimeText.setText(String.valueOf(currentProcessTimeLeft));
                         if (currentProcessTimeCounter == 0) {
                             si.getExitList().add(si.getCurrentProcess());
@@ -240,6 +315,9 @@ public class MainSceneController {
                             si.getReadySuspendedList().remove(0);
                         }
                     }
+                    */
+
+
 
                 }
             }
@@ -270,6 +348,14 @@ public class MainSceneController {
         }
     }
 
+    void clearRunFields(){
+        runNameText.setText("");
+        runIdText.setText("");
+        runTimeText.setText("");
+        leftTimeText.setText("");
+        progressBar.setProgress(0);
+    }
+
     private void tablesInit() {
         readyTableInit();
         readySuspendedTableInit();
@@ -283,6 +369,7 @@ public class MainSceneController {
         readyTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         readyTableTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         readyTablePriorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
+        readyTableBlockedColumn.setCellValueFactory(new PropertyValueFactory<>("blocked"));
 
         readyTable.setItems(si.getReadyList());
     }
@@ -314,7 +401,6 @@ public class MainSceneController {
     private void exitTableInit() {
         exitTableIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         exitTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        exitTableTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         exitTable.setItems(si.getExitList());
     }
@@ -330,21 +416,50 @@ public class MainSceneController {
     void openStatistics() throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/scenes/diagrams_scene.fxml"))));
-            stage.getIcons().add(new Image("/img/piechart.png"));
+        stage.getIcons().add(new Image("/img/piechart.png"));
         stage.show();
         statisticsButton.setDisable(true);
         stage.setOnCloseRequest(event -> statisticsButton.setDisable(false));
     }
 
-    void addProcessToReady(Process process){
-        if(si.getReadyList().size() < si.getReadyCapacity()){
+    void addProcessToReady(Process process) {
+        if (si.getReadyList().size() < si.getReadyCapacity()) {
             si.getReadyList().add(process);
-        }else{
+        } else {
             si.getReadySuspendedList().add(process);
         }
     }
 
-    void sortReadyLists(){
+    void addProcessToBlocked(Process process) {
+        if (si.getBlockedList().size() < si.getBlockedCapacity()) {
+            si.getBlockedList().add(process);
+        } else {
+            si.getBlockedSuspendedList().add(process);
+        }
+    }
+
+    void suspendedControl() {
+        if (si.getBlockedSuspendedList().size() != 0 && si.getBlockedList().size() < si.getBlockedCapacity()) {
+            try {
+                Process process = si.getBlockedSuspendedList().get(0);
+                si.getBlockedSuspendedList().remove(0);
+                si.getBlockedList().add(process);
+            } catch (Exception e) {
+                System.err.println("ERROR #3");
+            }
+        }
+        if (si.getReadySuspendedList().size() != 0 && si.getReadyList().size() < si.getReadyCapacity()) {
+            try {
+                Process process = si.getReadySuspendedList().get(0);
+                si.getReadySuspendedList().remove(0);
+                si.getReadyList().add(process);
+            } catch (Exception e) {
+                System.err.println("ERROR #4");
+            }
+        }
+    }
+
+    void sortReadyLists() {
         try {
             for (int i = 0; i < si.getReadyList().size() - 1; i++) {
                 for (int j = i + 1; j < si.getReadyList().size(); j++) {
@@ -355,16 +470,17 @@ public class MainSceneController {
                     }
                 }
             }
-            for (int i = 0; i < si.getReadyList().size() - 1; i++) {
-                for (int j = i + 1; j < si.getReadyList().size(); j++) {
-                    if (si.getReadyList().get(i).getPriority() < si.getReadyList().get(j).getPriority()) {
-                        Process temp = si.getReadyList().get(i);
-                        si.getReadyList().set(i, si.getReadyList().get(j));
+            for (int i = 0; i < si.getReadySuspendedList().size() - 1; i++) {
+                for (int j = i + 1; j < si.getReadySuspendedList().size(); j++) {
+                    if (si.getReadySuspendedList().get(i).getPriority() < si.getReadySuspendedList().get(j).getPriority()) {
+                        Process temp = si.getReadySuspendedList().get(i);
+                        si.getReadySuspendedList().set(i, si.getReadySuspendedList().get(j));
                         si.getReadyList().set(j, temp);
                     }
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
+            System.err.println("ERROR #2");
         }
     }
 
