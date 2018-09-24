@@ -76,10 +76,6 @@ public class SystemInformation {
         return timeSubtract;
     }
 
-    public static void setTimeSubtract(int timeSubtract) {
-        SystemInformation.timeSubtract = timeSubtract;
-    }
-
     public static ArrayList<Integer> getUsedIdList() {
         return usedIdList;
     }

@@ -64,15 +64,15 @@ public class DiagramsSceneController {
 
         XYChart.Series<String, Integer> low = new XYChart.Series<>();
         low.setName("Low");
-        low.getData().add(new XYChart.Data<String, Integer>("Low", lowCount));
+        low.getData().add(new XYChart.Data<>("Low", lowCount));
 
         XYChart.Series<String, Integer> medium = new XYChart.Series<>();
         medium.setName("Medium");
-        medium.getData().add(new XYChart.Data<String, Integer>("Medium", mediumCount));
+        medium.getData().add(new XYChart.Data<>("Medium", mediumCount));
 
         XYChart.Series<String, Integer> high = new XYChart.Series<>();
         high.setName("High");
-        high.getData().add(new XYChart.Data<String, Integer>("High", highCount));
+        high.getData().add(new XYChart.Data<>("High", highCount));
 
         barChart.getData().addAll(low, medium, high);
     }
