@@ -13,7 +13,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import vizualization.Effects;
 import vizualization.ShakeAnimation;
+import java.util.Scanner;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Random;
 
@@ -270,7 +273,7 @@ public class MainSceneController {
                             currentProcessTimeCounter=0;
                             clearRunFields();
                             progressBarThread.stop();
-                            process.setTime(process.getTime()-si.getTimeoutValue());
+                            process.setTime(process.getTime()-si.getTimeSubtract());
                             addProcessToReady(process);
                         }
 
@@ -511,6 +514,35 @@ public class MainSceneController {
             }
         } catch (Exception e) {
             System.err.println("ERROR #2");
+        }
+    }
+
+    @FXML
+    void loadProcessesFromFile() throws Exception{
+        File f = new File(System.getenv("SystemDrive") + System.getenv("HOMEPATH") + "\\Desktop\\conf.cnf");
+        if (f.exists()){
+            FileInputStream fileInputStream = new FileInputStream(f);
+            Scanner in = new Scanner(f);
+            while (in.hasNext()){
+                int id = in.nextInt();
+                if (si.isIdExist(id)) {
+                    while (true) {
+                        if (si.isIdExist(idCounter)) {
+                            idCounter++;
+                            continue;
+                        }
+                        id = idCounter;
+                        idCounter++;
+                        break;
+                    }
+                }
+                String name = in.next();
+                int time = in.nextInt();
+                boolean blocked = in.nextBoolean();
+                int priority = in.nextInt();
+                addProcessToReady(new Process(id, name, time, blocked, priority));
+                si.getUsedIdList().add(id);
+            }
         }
     }
 

@@ -1,1 +1,10 @@
+controllers\MainSceneController$2.class
+data\SystemInformation.class
 Main.class
+controllers\DiagramsSceneController.class
+vizualization\ShakeAnimation.class
+controllers\MainSceneController.class
+data\Process.class
+controllers\MainSceneController$1.class
+vizualization\Effects.class
+controllers\MainSceneController$ProgressBarThread.class
