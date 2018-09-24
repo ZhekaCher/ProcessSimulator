@@ -8,8 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import vizualization.Effects;
+import vizualization.ShakeAnimation;
 
 import java.io.IOException;
 import java.util.Random;
@@ -17,6 +20,12 @@ import java.util.Random;
 public class MainSceneController {
 
     SystemInformation si;
+
+    @FXML
+    private Button createNewProcessButton;
+
+    @FXML
+    private AnchorPane createNewProcessAnchorPane;
 
     @FXML
     private TextField nameCreateTextField;
@@ -127,7 +136,7 @@ public class MainSceneController {
     @FXML
     void createNewProcess() {
         try {
-            int id = 0;
+            int id;
             if (idCreateTextField.getText().equals("")) {
                 while (true) {
                     if (si.isIdExist(idCounter)){
@@ -165,13 +174,32 @@ public class MainSceneController {
             timeCreateTextField.setText("");
             blockedCreateCheckBox.setSelected(false);
             priorityCreateChoiceBox.setValue("Medium");
+            createNewProcessButton.setEffect(Effects.successShadow());
+            createNewProcessAnchorPane.setEffect(Effects.successShadow());
         } catch (Exception e) {
             System.err.println("ERROR #1");
-            e.printStackTrace();
+            createNewProcessButton.setEffect(Effects.errorShadow());
+            createNewProcessAnchorPane.setEffect(Effects.errorShadow());
+            new ShakeAnimation(){
+                @Override
+                public void activityOnFinished() {
+                    createNewProcessAnchorPane.setEffect(null);
+                }
+            }.shake(createNewProcessAnchorPane);
         }
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            createNewProcessButton.setEffect(null);
+            createNewProcessAnchorPane.setEffect(null);
+        }).start();
     }
 
     class ProgressBarThread extends Thread {
+
         @Override
         public void run() {
             super.run();
@@ -194,7 +222,7 @@ public class MainSceneController {
 
             @Override
             public void run() {
-                ProgressBarThread progressBarThread = new ProgressBarThread();
+                ProgressBarThread progressBarThread = null;
                 super.run();
                 while (true) {
                     //Time counter
@@ -203,7 +231,6 @@ public class MainSceneController {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                     sortReadyLists();
                     suspendedControl();
                     sortReadyLists();
@@ -216,14 +243,17 @@ public class MainSceneController {
                         leftTimeText.setText(String.valueOf(currentProcessTimeLeft));
                         if (si.getCurrentProcess().isBlocked()) {
                             Random random = new Random(System.nanoTime());
-                            int r = random.nextInt(currentProcessTimeLeft);
+                            int r;
+                            if (currentProcessTimeLeft < currentProcessTimeCounter)
+                             r = random.nextInt(currentProcessTimeLeft+1);
+                            else
+                                r = random.nextInt(currentProcessTimeCounter+1);
                             if (r == 0) {
                                 si.setCurrentProcess(null);
                                 currentProcessTimeLeft=0;
                                 currentProcessTimeCounter=0;
                                 clearRunFields();
                                 progressBarThread.stop();
-                                process.setTime(process.getTime()-si.getTimeoutValue());
                                 process.setBlocked(false);
                                 addProcessToBlocked(process);
                             }

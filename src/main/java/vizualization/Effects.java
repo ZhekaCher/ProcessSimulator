@@ -13,12 +13,6 @@ public class Effects {
         return successShadow;
     }
 
-    public static Effect settingsImageNull(){
-        ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setBrightness(-0.3);
-        return colorAdjust;
-    }
-
     public static Effect errorShadow() {
         InnerShadow errorShadow = new InnerShadow();
         errorShadow.setColor(Color.RED);
