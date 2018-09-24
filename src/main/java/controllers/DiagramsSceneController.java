@@ -48,7 +48,6 @@ public class DiagramsSceneController {
         processes.addAll(SystemInformation.getReadyList());
         processes.addAll(SystemInformation.getReadySuspendedList());
         for (Process process : processes){
-            System.out.println(process.getPriority());
             switch (process.getPriority()) {
                 case 0:
                     lowCount++;
